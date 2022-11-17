@@ -1,0 +1,18 @@
+﻿@model Entities.Concrete.Session
+
+<h3>Welcome - @Model.UserName</h3>
+
+
+<ul class="navbar-nav flex-grow-1">
+    <li class="nav-item">
+        @Html.ActionLink("List All Students", "StudentList", "Login", new { sessionId = Model.SessionId  })
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="StudentCourseList">List All Students Courses</a>
+    </li>
+  </ul>
+
+@if (Model != null)
+{
+    @Html.ActionLink("Log out", "Logout", "Login", new { sessionId = Model.SessionId  })
+}

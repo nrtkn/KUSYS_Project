@@ -1,0 +1,58 @@
+﻿@model Entities.StudentListModelDTO
+<p>
+    @if (Model.RoleId == 1)
+    {
+        @Html.ActionLink("Create a new student", "StudentAdd", "Student",new { sessionId = Model.SessionId})
+    }
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentList.FirstOrDefault().FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentList.FirstOrDefault().LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentList.FirstOrDefault().BirthDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var item in Model.StudentList) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BirthDate)
+                    </td>
+                    <td>
+                        @if (Model.RoleId == 1)
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.StudentId">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@item.StudentId">Delete</a>
+                        }
+                        <a asp-action="Details" asp-route-id="@item.StudentId">Details</a> |
+                    </td>
+                    
+                    
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
+
+@Html.ActionLink("Back To Main Page", "MainPg", "Login", new { sessionId = Model.SessionId  })
+@if (Model != null)
+{
+    @Html.ActionLink("Log out", "Logout", "Login", new { sessionId = Model.SessionId  })
+}
