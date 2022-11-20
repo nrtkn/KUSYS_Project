@@ -15,13 +15,13 @@ namespace KUSYS_Demo.Controllers
         {
             return View();
         }
-        public IActionResult StudentList(int sessionId) 
+        public IActionResult StudentList(StudentAddDTO student) 
         {
-            if (sessionId != 0 && sessionId != null)
+            if (student.SessionId != 0 && student.SessionId != null)
             {
-                var session = sessionClientBusiness.GetSessionInfo(sessionId);
+                var session = sessionClientBusiness.GetSessionInfo(student.SessionId);
                 StudentListModelDTO modelDTO= new StudentListModelDTO();
-                modelDTO.SessionId = sessionId;
+                modelDTO.SessionId = student.SessionId;
                 modelDTO.UserName = session.UserName;
                 modelDTO.UserId = session.UserId;
                 modelDTO.RoleId = session.RoleId;

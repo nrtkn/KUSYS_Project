@@ -22,5 +22,6 @@ namespace Entities
         public int SessionId { get; set; }
         public DateTime StartDate { get; set; }
         public Nullable<DateTime> EndDate { get; set; }
+        public List<Course> Courses { get; set; }
     }
 }

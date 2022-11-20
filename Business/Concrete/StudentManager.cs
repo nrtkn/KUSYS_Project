@@ -38,12 +38,19 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Student>>(resultList);
         }
 
+        public IDataResult<Student> GetStudent(int studentId)
+        {
+            var student = _studentDAL.Get(x=>x.StudentId == studentId);
+            return new SuccessDataResult<Student>(student);
+        }
+
         public IResult Update(Student student)
         {
             var studentToUpdate = _studentDAL.Get(x=>x.StudentId == student.StudentId);
             studentToUpdate.BirthDate = student.BirthDate;
             studentToUpdate.FirstName = student.FirstName;
             studentToUpdate.LastName = student.LastName;
+            _studentDAL.Update(studentToUpdate);
             return new SuccessResult();
         }
     }

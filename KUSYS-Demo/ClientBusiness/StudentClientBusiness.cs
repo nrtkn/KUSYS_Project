@@ -21,5 +21,34 @@ namespace KUSYS_Demo.ClientBusiness
             std.BirthDate = student.BirthDate;
             return studentManager.Add(std).Success;
         }
+        public bool DelStudent(StudentAddDTO student)
+        {
+            var std = studentManager.GetStudent(student.StudentId).Data;
+             
+            return studentManager.Delete(std.StudentId).Success;
+        }
+        public bool EditStudent(StudentAddDTO stdent)
+        {
+            Student student = new Student()
+            {
+                StudentId = stdent.StudentId,
+                BirthDate = stdent.BirthDate,
+                FirstName = stdent.FirstName,
+                LastName = stdent.LastName 
+            };
+            return studentManager.Update(student).Success;
+        }
+        public StudentAddDTO GetStudent(int studentId)
+        {
+            var std = studentManager.GetStudent(studentId).Data;
+            StudentAddDTO student = new StudentAddDTO()
+            {
+                StudentId = std.StudentId,
+                BirthDate = std.BirthDate,  
+                FirstName = std.FirstName,
+                LastName = std.LastName,
+            };
+            return student ;
+        }
     }
 }
